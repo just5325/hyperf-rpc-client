@@ -6,15 +6,18 @@ namespace App\Controller;
 
 use Hyperf\HttpServer\Contract\RequestInterface;
 use App\JsonRpc\UserServiceInterface;
+use Hyperf\Di\Annotation\Inject;
 
 class UserController
 {
 
+    /**
+     * 通过 `@Inject` 注解注入由 `@var` 注解声明的属性类型对象
+     *
+     * @Inject
+     * @var UserServiceInterface
+     */
     public $userService;
-    public function __construct(UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
-    }
 
     // 获取用户信息
     public function getUserInfo(RequestInterface $request)
