@@ -24,9 +24,10 @@ return [
                 'service' => $interface,
                 // 服务提供者的服务协议，可选，默认值为 jsonrpc-http
                 'protocol' => 'jsonrpc-http',
-                'nodes' => [
-                    // Provide the host and port of the service provider.
-                    ['host' => '127.0.0.1', 'port' => 9503],
+                // 这个消费者要从哪个服务中心获取节点信息，如不配置则不会从服务中心获取节点信息
+                'registry' => [
+                    'protocol' => 'consul',
+                    'address' => 'http://172.17.0.3:8500',
                 ],
             ];
         }
