@@ -14,7 +14,7 @@ class UserController
     /**
      * 通过 `@Inject` 注解注入由 `@var` 注解声明的属性类型对象
      *
-     * @Inject
+     * @Inject(lazy=true)
      * @var UserServiceInterface
      */
     public $userService;
