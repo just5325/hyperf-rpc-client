@@ -27,7 +27,7 @@ return [
                 // 这个消费者要从哪个服务中心获取节点信息，如不配置则不会从服务中心获取节点信息
                 'registry' => [
                     'protocol' => 'consul',
-                    'address' => 'http://10.96.229.101:8500',
+                    'address' => env('CONSUL_URI', ''),
                 ],
             ];
         }
