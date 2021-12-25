@@ -15,6 +15,7 @@ return [
         // 这里自动创建代理消费者类的配置形式，顾存在 name 和 service 两个配置项，这里的做法不是唯一的，仅说明可以通过 PHP 代码来生成配置
         $services = [
             'UserService' => \App\JsonRpc\UserServiceInterface::class,
+            'OrderService' => \App\JsonRpc\OrderServiceInterface::class,
         ];
         foreach ($services as $name => $interface) {
             $consumers[] = [
@@ -33,4 +34,23 @@ return [
         }
         return $consumers;
     }),
+    'enable' => [
+        // 开启服务发现
+        'discovery' => true,
+        // 开启服务注册
+        'register' => true,
+    ],
+    // 服务提供者相关配置
+    'providers' => [],
+    // 服务驱动相关配置
+    'drivers' => [
+        'consul' => [
+            'uri' => env('CONSUL_URI', ''),
+            'token' => env('CONSUL_TOKEN', ''),
+            'check' => [
+                'deregister_critical_service_after' => '90m',
+                'interval' => '1s',
+            ],
+        ],
+    ],
 ];
