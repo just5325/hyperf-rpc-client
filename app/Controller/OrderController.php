@@ -34,6 +34,7 @@ class OrderController
     // 获取用户信息
     public function getOrderInfo(RequestInterface $request)
     {
+        throw new \App\Exception\ApiException('手动抛出接口异常');
         // 从请求中获得 id 参数
         $id = $request->input('id', 1);
         $ret = $this->orderService->getOrderInfo((int)$id);
