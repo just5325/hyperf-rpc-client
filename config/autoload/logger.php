@@ -11,17 +11,19 @@ declare(strict_types=1);
  */
 return [
     'default' => [
-        'handler' => [
-            'class' => Monolog\Handler\RotatingFileHandler::class,
-            'constructor' => [
-                'filename' => BASE_PATH . '/runtime/logs/hyperf-json.log',
-                'level' => Monolog\Logger::INFO,
-            ],
-            'formatter' => [
-                'class' => Monolog\Formatter\JsonFormatter::class,
+        'handlers' => [
+            [
+                'class' => Monolog\Handler\RotatingFileHandler::class,
                 'constructor' => [
-                    'batchMode' => Monolog\Formatter\JsonFormatter::BATCH_MODE_JSON,
-                    'appendNewline' => true,
+                    'filename' => BASE_PATH . '/runtime/logs/hyperf-json.log',
+                    'level' => Monolog\Logger::INFO,
+                ],
+                'formatter' => [
+                    'class' => Monolog\Formatter\JsonFormatter::class,
+                    'constructor' => [
+                        'batchMode' => Monolog\Formatter\JsonFormatter::BATCH_MODE_JSON,
+                        'appendNewline' => true,
+                    ],
                 ],
             ],
         ],
