@@ -15,8 +15,7 @@ class ResponseService implements ResponseServiceInterface
     {
         return [
             'code' => $code,
-            'msg'  => '',
-            'error'  => '',
+            'message'  => '',
             'data' => $data
         ];
     }
@@ -25,7 +24,7 @@ class ResponseService implements ResponseServiceInterface
     {
         return [
             'code' => 200,
-            'msg'  => 'success',
+            'message'  => 'success',
             'data' => $data
         ];
     }
