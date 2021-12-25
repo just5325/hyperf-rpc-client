@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use Hyperf\HttpServer\Contract\RequestInterface;
 use App\JsonRpc\OrderServiceInterface;
-use App\JsonRpc\ResponseServiceInterface;
+use App\JsonRpc\ApiResponseServiceInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\AutoController;
 use Hyperf\HttpServer\Contract\ResponseInterface;
@@ -18,20 +18,16 @@ class OrderController
 {
 
     /**
-     * 通过 `@Inject` 注解注入由 `@var` 注解声明的属性类型对象
-     *
      * @Inject(lazy=true)
      * @var OrderServiceInterface
      */
     public $orderService;
 
     /**
-     * 通过 `@Inject` 注解注入由 `@var` 注解声明的属性类型对象
-     *
      * @Inject(lazy=true)
-     * @var ResponseServiceInterface
+     * @var ApiResponseServiceInterface
      */
-    public $responseService;
+    public $apiResponseService;
 
     /**
      * @var LoggerInterface
@@ -45,7 +41,7 @@ class OrderController
     }
 
     // 获取用户信息
-    public function getOrderInfo(RequestInterface $request)
+    public function getOrderInfo(RequestInterface $request): array
     {
         $this->logger->info("测试日志信息", ['a'=>1,'b'=>2]);
         $this->logger->error("测试错误信息", ['a'=>10,'b'=>20]);
@@ -54,7 +50,7 @@ class OrderController
         // 从请求中获得 id 参数
         $id = $request->input('id', 1);
         $ret = $this->orderService->getOrderInfo((int)$id);
-        return $this->responseService->ApiSuccess($ret);
+        return $this->apiResponseService->success($ret);
     }
 
 }

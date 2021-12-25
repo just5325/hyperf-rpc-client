@@ -1,17 +1,9 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
+
 namespace App\Exception\Handler;
 
-use App\JsonRpc\ResponseServiceInterface;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\ExceptionHandler\ExceptionHandler;
 use Hyperf\HttpMessage\Stream\SwooleStream;
@@ -19,6 +11,13 @@ use Psr\Http\Message\ResponseInterface;
 use Throwable;
 use App\Exception\ApiException;
 
+/**
+ * Api异常处理器
+ *
+ * 本异常处理器设计的目的是为了捕获HTTP API接口中出现的异常，已API友好的返回异常错误信息。
+ *
+ * @author Hcg <532508307@qq.com>
+ */
 class ApiExceptionHandler extends ExceptionHandler
 {
     /**
