@@ -13,7 +13,8 @@ return [
     'default' => [
         'handlers' => [
             [
-                'class' => Monolog\Handler\RotatingFileHandler::class,
+                // 修改日志处理器为我们自定义的日志处理器
+                'class' => App\Log\Handler\RotatingFileHandler::class,
                 'constructor' => [
                     'filename' => BASE_PATH . '/runtime/logs/hyperf-json.log',
                     'level' => Monolog\Logger::INFO,
