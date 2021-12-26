@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Log\Handler;
 
+use App\JsonRpc\LogServiceInterface;
+use Hyperf\Elasticsearch\ClientBuilderFactory;
 use Monolog\Handler\RotatingFileHandler as MonologRotatingFileHandler;
 
 /**
@@ -34,6 +36,7 @@ class RotatingFileHandler extends MonologRotatingFileHandler
      * @author Hcg <532508307@qq.com>
      */
     protected function post(array $record){
-        // todo 在这里扩展发送日志数据到第三方日志服务平台
+        // todo 在这里扩展发送日志数据到第三方日志服务平台,这里只是简单的把日志信息投递到ELASTICSEARCH，还需要根据业务逻辑进行完善
+        \App\Service\LogService::log($record);
     }
 }

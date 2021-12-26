@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Hyperf\Elasticsearch\ClientBuilderFactory;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use App\JsonRpc\OrderServiceInterface;
 use App\JsonRpc\ApiResponseServiceInterface;
+use App\JsonRpc\LogServiceInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\AutoController;
 use Hyperf\HttpServer\Contract\ResponseInterface;
@@ -30,6 +32,12 @@ class OrderController
     public $apiResponseService;
 
     /**
+     * @Inject(lazy=true)
+     * @var LogServiceInterface
+     */
+    public $logService;
+
+    /**
      * @var LoggerInterface
      */
     protected $logger;
@@ -46,6 +54,7 @@ class OrderController
         $this->logger->info("测试日志信息", ['a'=>1,'b'=>2]);
         $this->logger->error("测试错误信息", ['a'=>10,'b'=>20]);
         $this->logger->debug("测试debug信息", ['a'=>100,'b'=>200]);
+//        $this->logService->log();
 //        throw new \App\Exception\ApiException('手动抛出接口异常');
         // 从请求中获得 id 参数
         $id = $request->input('id', 1);

@@ -17,6 +17,7 @@ return [
             'UserService' => \App\JsonRpc\UserServiceInterface::class,
             'OrderService' => \App\JsonRpc\OrderServiceInterface::class,
             'ApiResponseService' => \App\JsonRpc\ApiResponseServiceInterface::class,
+            'LogService' => \App\JsonRpc\LogServiceInterface::class,
         ];
         foreach ($services as $name => $interface) {
             $consumers[] = [
